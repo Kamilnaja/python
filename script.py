@@ -1,9 +1,11 @@
-import random
+
+letters = ['a', 'g', 'a']
 
 
-def printData(data):
-    print(data)
+def mix(letters):
+    return letters
 
 
-printData("lorem mopsim")
-print(random.randrange(10))
+print(
+    mix(letters)
+)
