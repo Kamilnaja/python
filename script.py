@@ -1,11 +1,15 @@
+import itertools
+import json
+
+jsonData = open('dict.json').read()
 
 letters = ['a', 'g', 'a']
 
+with open('dict.json') as f:
+    data = json.load(f)
 
-def mix(letters):
-    return letters
+print(data["words"][0])
 
 
-print(
-    mix(letters)
-)
+def check():
+    return "checking"
