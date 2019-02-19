@@ -8,9 +8,9 @@ class Player:
 
     # check every with dictionary
     def readDict(self):
-        jsonData = open('dict.json').read()
+        jsonData = open("dict.json").read()
 
-    with open('dict.json') as f:
+    with open("dict.json") as f:
         data = json.load(f)
 
     print(data["words"][0])
