@@ -1,1 +1,1 @@
-nodemon --exec python3.7 python.py
+nodemon --exec python3.7 hello.py

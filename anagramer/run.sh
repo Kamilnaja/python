@@ -1,1 +1,1 @@
-nodemon --exec python3.7 anagramer.py
+nodemon --exec python3.7 hello.py
