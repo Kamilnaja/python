@@ -2,34 +2,31 @@
 import random;
 
 searchedString = 'One touch of nature makes the whole world kin';
-searchedString2 = 'all ';
+searchedString2 = ['a', 'l', 'l', 'g', 'h'];
 randomStr = '';
 i = 0;
 
-def compareWithPatch(val1, val2):
-    print('Comparing' + val1, val2)
-
-def compare(val1, val2):
-    print('Comparing: ' + val1.lower() , val2.lower(), i)
-    if (val1 in val2):
-        print(val1, ' contains ' , val2)
-        findIndex = val2.find(val1);
-        print('reduced ', val2.split(findIndex, 1))
-        return True;
-
-    if (val1.lower() == val2.lower()):
-        print('search done in: ', i)
+def checkEqual(generated, searched):
+    if (generated == searched):
+        print('search done in: ', i, ' res : ', generated, 'found : ' , searched)
         return True;
     return False;
 
-while (compare(randomStr, searchedString2) == False):
+def removeCorrect(generated, searched):
+    #  if there is one or more letters on good position, reduce string 
+    for j in range(0, len(generated)):
+        if generated[j] == searched[j]:
+            print('one on good position')
+            # del searched[j]
+    return checkEqual(generated, searched)
+
+while (removeCorrect(randomStr, searchedString2) == False):
     i = i + 1;
-    temp = "";
+    temp = [];
     for x in range(0, len(searchedString2)):
         # takes number from range ` to z in ascii Dec
         asciDec = random.randint(96, 111);
         asciDec = chr(asciDec);         
         # convert ` to space`
-        temp = asciDec.replace('`', ' ')
-
+        temp.append(asciDec.replace('`', ' '));
     randomStr = temp;
