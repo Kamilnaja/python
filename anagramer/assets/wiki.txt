@@ -1,7 +1,0 @@
-1 punkt: A (x9), E (x7), I (x8), N (x5), O (x6), R (x4), S (x4), W (x4), Z (x5)
-2 punkty: C (x3), D (x3), K(x3), L(x3), M(x3), P (x3), T (x3), Y (x4)
-3 punkty: B (x2), G(x2), H(x2), J (x2), Ł (x2), U (x2)
-5 punktów: Ą (x1), Ę (x1), F (x1), Ó (x1), Ś (x1), Ż (x1)
-6 punktów: Ć (x1)
-7 punktów: Ń (x1)
-9 punktów: Ź (x1)
