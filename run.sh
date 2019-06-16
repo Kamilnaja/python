@@ -1,1 +1,1 @@
-nodemon --exec python3.7 calculating.py
+nodemon --exec python3.7 ./generator/generate.py
