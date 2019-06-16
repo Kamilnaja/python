@@ -12,9 +12,10 @@ class State(Enum):
 
 
 searchedString = "lorem"
-state = State.NONE_EQUAL
+appState = State.NONE_EQUAL
 currentSearchedLen = len(searchedString)
-tempRandomStr = ""
+tempRandomStr = []
+tempSearchedStr = []
 
 
 def generateRandomWord(searchedLen=len(searchedString)):
@@ -22,18 +23,37 @@ def generateRandomWord(searchedLen=len(searchedString)):
     for x in range(searchedLen):
         randomLetter = random.randint(65, 90)
         letters.append(chr(randomLetter).lower())
-    return ','.join(letters).replace(',', '')
+    return ",".join(letters).replace(",", "")
 
 
-def compareRandomWithSearched(random, searched):
-    print(random)
-    print(searched)
+def compareRandomWithSearched(searched, random):
+    searchedIterator = iter(searched)
+    randomIterator = iter(random)
+
+    for x in searchedString:
+        if next(searchedIterator) == next(randomIterator):
+            print("equal " + x + random + " searched : " + searched)
+            global appState
+            appState = State.PARTIALY_EQUAL
+            tempSearchedStr.append("_")
+            print(tempRandomStr)
+            rerun()
+        else:
+            tempSearchedStr.append(x)
+            appState = State.PARTIALY_EQUAL
+    print("tempSearchedStr : " + "".join(tempSearchedStr))
+    rerun()
 
 
-if state == State.NONE_EQUAL:
-    tempRandomStr = generateRandomWord()  # generate without params
-    compareRandomWithSearched(searchedString, tempRandomStr)
-elif state == State.ALL_EQUALS:  # generate with
-    generateRandomWord(5)
-elif state == State.ALL_EQUALS:
-    print("We have succesfully generated your string!")
+def rerun():
+    if appState == State.NONE_EQUAL:
+        tempRandomStr = generateRandomWord()  # generate without params
+        compareRandomWithSearched(searchedString, tempRandomStr)
+    elif appState == State.PARTIALY_EQUAL:  # generate with
+        print("partially equal")
+        generateRandomWord(5)
+    elif appState == State.ALL_EQUALS:
+        print("We have succesfully generated your string!")
+
+
+rerun()
