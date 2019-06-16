@@ -1,7 +1,7 @@
 import random
-from main import searchedString
+from main import searched
 
-def generateRandomWord(searchedLen=len(searchedString)):
+def generateRandomWord(searchedLen=len(searched)):
     # print('searched len :' + str(len(searchedString)))
     letters = []
     for x in range(searchedLen):

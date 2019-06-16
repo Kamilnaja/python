@@ -1,0 +1,98 @@
+[33m[nodemon] 1.19.0[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `python3.7 ./generator/index.py`[39m
+state = State.NONE_EQUAL
+searched: l
+compareRandom : searched l
+searched :l
+letter : l:t searched : l
+searchedString l
+not found 
+temp l
+rerun!
+['l']
+tempSearchedStr :l
+state = State.PARTIALY_EQUAL
+tempSearchedStr l
+compareRandom : searched l
+searched :l
+letter : l:c searched : l
+searchedString l
+not found 
+temp l
+rerun!
+['l']
+tempSearchedStr :l
+state = State.PARTIALY_EQUAL
+tempSearchedStr l
+compareRandom : searched l
+searched :l
+letter : l:z searched : l
+searchedString l
+not found 
+temp l
+rerun!
+['l']
+tempSearchedStr :l
+state = State.PARTIALY_EQUAL
+tempSearchedStr l
+compareRandom : searched l
+searched :l
+letter : l:w searched : l
+searchedString l
+not found 
+temp l
+rerun!
+['l']
+tempSearchedStr :l
+state = State.PARTIALY_EQUAL
+tempSearchedStr l
+compareRandom : searched l
+searched :l
+letter : l:m searched : l
+searchedString l
+not found 
+temp l
+rerun!
+['l']
+tempSearchedStr :l
+state = State.PARTIALY_EQUAL
+tempSearchedStr l
+compareRandom : searched l
+searched :l
+letter : l:x searched : l
+searchedString l
+not found 
+temp l
+rerun!
+['l']
+tempSearchedStr :l
+state = State.PARTIALY_EQUAL
+tempSearchedStr l
+compareRandom : searched l
+searched :l
+letter : l:z searched : l
+searchedString l
+not found 
+temp l
+rerun!
+['l']
+tempSearchedStr :l
+state = State.PARTIALY_EQUAL
+tempSearchedStr l
+compareRandom : searched l
+searched :l
+letter : l:l searched : l
+searchedString l
+is equal l
+temp _
+rerun!
+['_']
+tempSearchedStr :_
+state = State.PARTIALY_EQUAL
+tempSearchedStr _
+compareRandom : searched _
+searched :_
+finded!
+[32m[nodemon] clean exit - waiting for changes before restart[39m

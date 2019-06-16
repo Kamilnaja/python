@@ -1,5 +1,5 @@
 from state import State
 
-searchedString = "lorem"
+searched = "lor"
 appState = State.NONE_EQUAL
-currentSearchedLen = len(searchedString)
+currentSearchedLen = len(searched)
