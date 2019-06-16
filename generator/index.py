@@ -3,63 +3,52 @@ from state import State
 from stringGen import generateRandomWord
 from main import *
 from generator import generateResponseTable
-
+import sys
+sys.setrecursionlimit(400000)
 tempSearched = []
-
+tries = 0
 
 def compareRandomWithSearched(searched, random):
-    print("compareRandom : searched " + searched)
     global appState
-    temporarySearchedReplacement = []
-    print("searched :" + searched)
+
     if "".join(searched) == generateResponseTable(searched):
         appState = State.ALL_EQUALS
-        print("Good Job monkeys! finded!")
+        rerun()
         return
 
+    temporarySearchedReplacement = []
     searchedIterator = iter(searched)
     randomIterator = iter(random)
 
     for x in searched:
-        print("letter" + " : " + x + ":" + random + " searched : " + searched)
-        print("searchedString " + x)
         if x == "_":
-            print("dash")
             temporarySearchedReplacement.append("_")
         else:
             if next(searchedIterator) == next(randomIterator):
-                print("is equal " + x)
                 temporarySearchedReplacement.append("_")
             else:  # jeżeli nie znajdzie aktualnie dopasowania żadnego
                 temporarySearchedReplacement.append(x)
-                print("not found ")
 
-    print("temp " + "".join(temporarySearchedReplacement))
-    print("rerun!")
     global tempSearched
     tempSearched = temporarySearchedReplacement
-    print(tempSearched)
-    print("tempSearchedStr :" + "".join(tempSearched))
     appState = State.PARTIALY_EQUAL
     rerun()
-
+    return
 
 def rerun():
+    global tries
+    tries = tries + 1
     if appState == State.NONE_EQUAL:
-        print("state = " + str(appState))
-        print("searched: " + searched)
         compareRandomWithSearched(searched, generateRandomWord(len(searched)))
+        return
 
     elif appState == State.PARTIALY_EQUAL:  # generate with
-        print("state = " + str(appState))
-        print("tempSearchedStr " + "".join(tempSearched))
-        compareRandomWithSearched(
-            "".join(tempSearched), generateRandomWord(len(searched))
-        )
+        compareRandomWithSearched("".join(tempSearched), generateRandomWord(len(searched)))
+        return
 
     elif appState == State.ALL_EQUALS:
-        print("state = " + str(appState))
-        print("We have succesfully generated your string!")
+        print("Good Job monkeys! finded!")
+        print(" tries " + str(tries))
         return
 
 
