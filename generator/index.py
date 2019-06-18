@@ -4,9 +4,11 @@ from stringGen import generateRandomWord
 from main import *
 from generator import generateResponseTable
 import sys
+
 sys.setrecursionlimit(400000)
 tempSearched = []
 tries = 0
+lenSearched = len(searched)
 
 def compareRandomWithSearched(searched, random):
     global appState
@@ -35,21 +37,25 @@ def compareRandomWithSearched(searched, random):
     rerun()
     return
 
+
 def rerun():
     global tries
     tries = tries + 1
+    
     if appState == State.NONE_EQUAL:
-        compareRandomWithSearched(searched, generateRandomWord(len(searched)))
-        return
+        print("state none equal")
+        compareRandomWithSearched(searched, generateRandomWord(lenSearched))
 
     elif appState == State.PARTIALY_EQUAL:  # generate with
-        compareRandomWithSearched("".join(tempSearched), generateRandomWord(len(searched)))
-        return
+        print("state partially: " + str(tries))
+        compareRandomWithSearched(
+            "".join(tempSearched), generateRandomWord(lenSearched)
+        )
 
     elif appState == State.ALL_EQUALS:
+        print("state all")
         print("Good Job monkeys! finded!")
         print(" tries " + str(tries))
-        return
 
 
 rerun()
