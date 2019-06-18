@@ -9,7 +9,6 @@ tries = 0
 lenSearched = len(searched)
 generatedResponseTable = generateResponseTable(searched)
 
-
 def compareRandomWithSearched(searched, random):
     global appState
     print('random: ' + random + ' searched: ' + searched)
@@ -36,6 +35,7 @@ def compareRandomWithSearched(searched, random):
         tempSearched = temporarySearchedReplacement
         appState = State.PARTIALY_EQUAL
         rerun()
+
 
 
 def rerun():
