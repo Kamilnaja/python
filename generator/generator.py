@@ -4,7 +4,7 @@ def generateRandomWord(searchedLen):
     letters = []
     for x in range(searchedLen):
         randomLetter = random.randint(65, 90)
-        letters.append(chr(randomLetter).lower())
+        letters.append(chr(randomLetter))
     return ",".join(letters).replace(",", "")
 
 def generateResponseTable(searched):

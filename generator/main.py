@@ -1,4 +1,4 @@
 from state import State
 
-searched = "ra"
+searched = "aaa"
 appState = State.NONE_EQUAL
