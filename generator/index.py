@@ -12,6 +12,7 @@ print(generatedResponseTable)
 
 
 def compareRandomWithSearched(searched, random):
+    print('random: ' + random + ' searched: ' + searched)
     global appState
 
     if "".join(searched) == generatedResponseTable:
@@ -19,14 +20,13 @@ def compareRandomWithSearched(searched, random):
         rerun()
     else:
         temporarySearchedReplacement = []
-        searchedIterator = iter(searched)
         randomIterator = iter(random)
 
         for x in searched:
             if x == "_":
                 temporarySearchedReplacement.append("_")
             else:
-                if next(searchedIterator) == next(randomIterator):
+                if x == next(randomIterator):
                     print('one equal: ' + x)
                     temporarySearchedReplacement.append("_")
                 else:
@@ -52,7 +52,7 @@ def rerun():
         compareRandomWithSearched(searched, generateRandomWord(lenSearched))
 
     if appState == State.PARTIALY_EQUAL:  # generate with
-        print("state partially: " + str(tries))
+        # print("state partially: " + str(tries))
         # print("tempSearched: " + str)
         compareRandomWithSearched(
             "".join(tempSearched), generateRandomWord(lenSearched)
