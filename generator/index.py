@@ -1,7 +1,6 @@
 from state import State
-from generator import generateRandomWord
+from generator import generateRandomWord, generateResponseTable
 from main import *
-from generator import generateResponseTable
 import sys
 
 tempSearched = []
