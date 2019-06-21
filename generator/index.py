@@ -1,5 +1,5 @@
 from state import State
-from stringGen import generateRandomWord
+from generator import generateRandomWord
 from main import *
 from generator import generateResponseTable
 import sys
@@ -9,9 +9,10 @@ tries = 0
 lenSearched = len(searched)
 generatedResponseTable = generateResponseTable(searched)
 
+
 def compareRandomWithSearched(searched, random):
     global appState
-    print('random: ' + random + ' searched: ' + searched)
+    print("random: " + random + " searched: " + searched)
 
     if "".join(searched) == generatedResponseTable:
         appState = State.ALL_EQUALS
@@ -25,8 +26,8 @@ def compareRandomWithSearched(searched, random):
                 temporarySearchedReplacement.append("_")
             else:
                 if x == next(randomIterator):
-                    print('random: ' + random + ' searched: ' + searched)
-                    print('equal: ' + x)
+                    print("random: " + random + " searched: " + searched)
+                    print("equal: " + x)
                     temporarySearchedReplacement.append("_")
                 else:
                     temporarySearchedReplacement.append(x)
@@ -35,7 +36,6 @@ def compareRandomWithSearched(searched, random):
         tempSearched = temporarySearchedReplacement
         appState = State.PARTIALY_EQUAL
         rerun()
-
 
 
 def rerun():
@@ -52,8 +52,6 @@ def rerun():
         compareRandomWithSearched(searched, generateRandomWord(lenSearched))
 
     if appState == State.PARTIALY_EQUAL:  # generate with
-        # print("state partially: " + str(tries))
-        # print("tempSearched: " + str)
         compareRandomWithSearched(
             "".join(tempSearched), generateRandomWord(lenSearched)
         )
