@@ -1,59 +1,70 @@
 from state import State
-from generator import generateRandomWord, generateResponseTable
-from main import *
-import sys
-
-tempSearched = []
-tries = 0
-lenSearched = len(searched)
-generatedResponseTable = generateResponseTable(searched)
+from generator import Generator
 
 
-def compareRandomWithSearched(searched, random):
-    global appState
-    print("random: " + random + " searched: " + searched)
+class Comparator:
+    temporarySearchedReplacement = ""
 
-    if "".join(searched) == generatedResponseTable:
-        appState = State.ALL_EQUALS
-        rerun()
-    else:
-        temporarySearchedReplacement = []
-        randomIterator = iter(random)
+    @staticmethod
+    def compareRandomWithSearched(searched, random):
+        print("random: " + random + " searched: " + searched)
 
-        for x in searched:
-            if x == "_":
-                temporarySearchedReplacement.append("_")
-            else:
-                if x == next(randomIterator):
-                    print("random: " + random + " searched: " + searched)
-                    print("equal: " + x)
+        if "".join(searched) == Generator.generateResponseTable(searched):
+            return [State.ALL_EQUALS, False]
+        else:
+            temporarySearchedReplacement = []
+            randomIterator = iter(random)
+
+            for x in searched:
+                if x == "_":
                     temporarySearchedReplacement.append("_")
                 else:
-                    temporarySearchedReplacement.append(x)
+                    if x == next(randomIterator):
+                        print("random: " + random + " searched: " + searched)
+                        print("equal: " + x)
+                        temporarySearchedReplacement.append("_")
+                    else:
+                        temporarySearchedReplacement.append(x)
 
-        global tempSearched
-        tempSearched = temporarySearchedReplacement
-        appState = State.PARTIALY_EQUAL
-        rerun()
+            # App.searchedTemp =
 
-
-def rerun():
-    global tries
-    tries = tries + 1
-
-    if appState == State.ALL_EQUALS:
-        print("Good Job monkeys! finded!")
-        print(" tries " + str(tries))
-        exit()
-
-    if appState == State.NONE_EQUAL:
-        print("state none equal")
-        compareRandomWithSearched(searched, generateRandomWord(lenSearched))
-
-    if appState == State.PARTIALY_EQUAL:  # generate with
-        compareRandomWithSearched(
-            "".join(tempSearched), generateRandomWord(lenSearched)
-        )
+            return [State.PARTIALY_EQUAL, temporarySearchedReplacement]
 
 
-rerun()
+class App:
+    searchedTemp = ""
+
+    def __init__(self):
+        self.searched = "wodka czysta"
+        self.appState = State.NONE_EQUAL
+        self.tries = 0
+
+    def rerun(self):
+        self.tries = self.tries + 1
+        if self.appState == State.ALL_EQUALS:
+            print("Good Job monkeys! finded!")
+            print(" tries " + str(self.tries))
+            exit()
+
+        if self.appState == State.NONE_EQUAL:
+            res = Comparator.compareRandomWithSearched(
+                self.searched, Generator.generateRandomWord(len(self.searched))
+            )
+            self.appState = res[0]
+            App.searchedTemp = res[1]
+
+            app.rerun()
+
+        if self.appState == State.PARTIALY_EQUAL:
+            res = Comparator.compareRandomWithSearched(
+                "".join(App.searchedTemp),
+                Generator.generateRandomWord(len(self.searched)),
+            )
+            self.appState = res[0]
+            App.searchedTemp = res[1]
+            app.rerun()
+
+
+app = App()
+app.rerun()
+
