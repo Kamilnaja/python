@@ -1,1 +1,1 @@
-python3.7 ./generator/index.py
+python3.7 ./generator/start.py

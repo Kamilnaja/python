@@ -6,8 +6,8 @@ from generator import Generator
 class App:
     searchedTemp = ""
 
-    def __init__(self):
-        self.searched = "wodka czysta"
+    def __init__(self, searchedSentence):
+        self.searched = searchedSentence
         self.appState = State.NONE_EQUAL
         self.tries = 0
 
@@ -25,7 +25,7 @@ class App:
             self.appState = res[0]
             App.searchedTemp = res[1]
 
-            app.rerun()
+            self.rerun()
 
         if self.appState == State.PARTIALY_EQUAL:
             res = Comparator.compareRandomWithSearched(
@@ -34,9 +34,5 @@ class App:
             )
             self.appState = res[0]
             App.searchedTemp = res[1]
-            app.rerun()
-
-
-app = App()
-app.rerun()
+            self.rerun()
 
