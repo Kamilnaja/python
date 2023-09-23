@@ -72,13 +72,12 @@ model.compile(optimizer='adam',
 model.summary()
 model.save('my_model.keras')
 
-epochs=10
+epochs=20
 history = model.fit(
   train_ds,
   validation_data=val_ds,
   epochs=epochs
 )
-
 
 acc = history.history['accuracy']
 val_acc = history.history['val_accuracy']
