@@ -24,6 +24,9 @@ model.compile(optimizer="adam",
               metrics=["accuracy"])
 
 model.fit(train_images, train_labels, epochs=10)
+sum = model.summary()
+
+print(sum)
 
 test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
 
