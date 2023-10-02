@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
 
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (train_images, train_labels), (test_images,
@@ -10,7 +11,7 @@ class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
 
 train_images = train_images/255.0
 test_images = test_images/255.0
-plt.figure(figsize=(10, 10))
+
 
 model = tf.keras.Sequential([
     tf.keras.layers.Flatten(input_shape=(28, 28)),
@@ -23,7 +24,13 @@ model.compile(optimizer="adam",
                   from_logits=True),
               metrics=["accuracy"])
 
-model.fit(train_images, train_labels, epochs=10)
+log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = tf.keras.callbacks.TensorBoard(
+    log_dir=log_dir, histogram_freq=1)
+
+
+model.fit(train_images, train_labels, epochs=10,
+          callbacks=[tensorboard_callback])
 sum = model.summary()
 
 print(sum)
@@ -112,4 +119,4 @@ plot_value_array(1, predictions_single[0], test_labels)
 _ = plt.xticks(range(10), class_names, rotation=45)
 plt.show()
 argmax = np.argmax(predictions_single[0])
-print(argmax)
+print(class_names[argmax])
