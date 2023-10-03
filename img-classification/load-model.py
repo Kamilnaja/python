@@ -12,7 +12,7 @@ gshock_url = "https://img01.ztat.net/article/spp-media-p1/21d3261ab23a3319aa6bf6
 sunflower_path = tf.keras.utils.get_file('Gshock', origin=gshock_url)
 
 img = tf.keras.utils.load_img(
-    sunflower_path, target_size=(img_height, img_width)
+    sunflower_path, target_size=(img_height, img_width) 
 )
 img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0)  # Create a batch
