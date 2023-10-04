@@ -5,4 +5,4 @@ img-classification/pictures/*
 *.keras
 /logs
 .DS_Store
-```
+*.pyc

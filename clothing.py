@@ -1,3 +1,5 @@
+import datetime
+
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
@@ -13,10 +15,6 @@ class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
 train_images = train_images/255.0
 test_images = test_images/255.0
 
-plt.figure(figsize=(10, 10))
-plt.draw()
-
-print('--')
 
 model = tf.keras.Sequential([
     tf.keras.layers.Flatten(input_shape=(28, 28)),
@@ -29,7 +27,16 @@ model.compile(optimizer="adam",
                   from_logits=True),
               metrics=["accuracy"])
 
-model.fit(train_images, train_labels, epochs=10)
+log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = tf.keras.callbacks.TensorBoard(
+    log_dir=log_dir, histogram_freq=1)
+
+
+model.fit(train_images, train_labels, epochs=10,
+          callbacks=[tensorboard_callback])
+sum = model.summary()
+
+print(sum)
 
 test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
 
@@ -114,6 +121,4 @@ plot_value_array(1, predictions_single[0], test_labels)
 _ = plt.xticks(range(10), class_names, rotation=45)
 plt.show()
 argmax = np.argmax(predictions_single[0])
-print(argmax)
-
-# add confusion matrix
+print(class_names[argmax])

@@ -54,7 +54,7 @@ print(np.min(first_image), np.max(first_image))
 num_classes = len(class_names)
 
 model = Sequential([
-    layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)),
+    layers.Flatten(1./255, input_shape=(img_height, img_width, 3)),
     layers.Conv2D(16, 3, padding='same', activation='relu'),
     layers.MaxPooling2D(),
     layers.Conv2D(32, 3, padding='same', activation='relu'),
@@ -121,3 +121,5 @@ print(
     "This image most likely belongs to {} with a {:.2f} percent confidence."
     .format(class_names[np.argmax(score)], 100 * np.max(score))
 )
+
+test_loss, test_acc = model.evaluate(test)
