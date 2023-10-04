@@ -1,16 +1,22 @@
-import tensorflow as tf
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
 
+# pobieranie danych
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (train_images, train_labels), (test_images,
                                test_labels) = fashion_mnist.load_data()
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
+# normalizacja danych
 train_images = train_images/255.0
 test_images = test_images/255.0
+
 plt.figure(figsize=(10, 10))
+plt.draw()
+
+print('--')
 
 model = tf.keras.Sequential([
     tf.keras.layers.Flatten(input_shape=(28, 28)),
@@ -99,7 +105,6 @@ def showPredictionsMulti():
 
 img = test_images[1]
 
-print(img.shape)
 img = (np.expand_dims(img, 0))
 
 predictions_single = probability_model.predict(img)
@@ -110,3 +115,5 @@ _ = plt.xticks(range(10), class_names, rotation=45)
 plt.show()
 argmax = np.argmax(predictions_single[0])
 print(argmax)
+
+# add confusion matrix
