@@ -14,5 +14,7 @@ arr[0] = 42
 arr = np.array([1.1, 2.2, 3.3, 4.5, 5.1])
 newarr = arr.astype('i')
 
-print(newarr)
-print(newarr.dtype)
+arr = np.array([1, 0, 3])
+for x in arr:
+    print(x)
+
