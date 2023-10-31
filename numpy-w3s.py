@@ -18,3 +18,11 @@ arr = np.array([1, 0, 3])
 for x in arr:
     print(x)
 
+from scipy import datasets
+img = datasets.face()
+
+import matplotlib.pyplot as plt
+
+plt.imshow(img)
+plt.show()
+# print(img.shape)

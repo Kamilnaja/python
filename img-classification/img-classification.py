@@ -1,18 +1,20 @@
 import pathlib
-
 import matplotlib.pyplot as plt
 import numpy as np
 import PIL
 import tensorflow as tf
+import os
 from keras import Sequential, layers
 from tensorflow import keras
 
-data_dir = pathlib.Path("pictures")
+cwd = os.path.dirname(os.path.abspath(__file__))
+
+data_dir = pathlib.Path(cwd + "/pictures")
+
 image_count = len(list(data_dir.glob('*/*.jpeg')))
-print(image_count)
 
 analogs = list(data_dir.glob('analog/*'))
-print(len(analogs))
+
 PIL.Image.open(str(analogs[0]))
 plt.show()
 
@@ -29,7 +31,6 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
     batch_size=batch_size)
 
 class_names = train_ds.class_names
-print(class_names)
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
     data_dir,
