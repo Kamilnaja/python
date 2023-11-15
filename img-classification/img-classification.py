@@ -1,9 +1,10 @@
+import os
 import pathlib
+
 import matplotlib.pyplot as plt
 import numpy as np
 import PIL
 import tensorflow as tf
-import os
 from keras import Sequential, layers
 from tensorflow import keras
 
@@ -14,6 +15,7 @@ data_dir = pathlib.Path(cwd + "/pictures")
 image_count = len(list(data_dir.glob('*/*.jpeg')))
 
 analogs = list(data_dir.glob('analog/*'))
+
 
 PIL.Image.open(str(analogs[0]))
 plt.show()
@@ -64,7 +66,7 @@ model = Sequential([
     layers.MaxPooling2D(),
     layers.Flatten(),
     layers.Dense(128, activation='relu'),
-    layers.Dense(num_classes)
+    layers.Dense(2)
 ])
 
 
