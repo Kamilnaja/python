@@ -11,7 +11,7 @@ negative_samples = np.random.multivariate_normal(
     mean, cov, size=num_samples_per_class)
 
 # Generate positive samples
-mean = [3, 0]
+mean = [0, 3]
 cov = [[1, 0.5], [0.5, 1]]
 positive_samples = np.random.multivariate_normal(
     mean, cov, size=num_samples_per_class)

@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+from scipy import datasets
 import numpy as np
 
 arr1 = np.array(42)
@@ -18,10 +20,8 @@ arr = np.array([1, 0, 3])
 for x in arr:
     print(x)
 
-from scipy import datasets
 img = datasets.face()
 
-import matplotlib.pyplot as plt
 
 plt.imshow(img)
 plt.show()

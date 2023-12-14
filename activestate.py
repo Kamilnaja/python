@@ -18,7 +18,7 @@ x = data['date']
 plt.scatter(x, y)
 plt.show()
 # Create a linear regression model based the positioning of the data and Intercept, and predict a Best Fit:
-model = LinearRegression(fit_intercept=True)
+model = LinearRegression()
 model.fit(x[:, np.newaxis], y)
 xfit = np.linspace(0, 10, 1000)
 yfit = model.predict(xfit[:, np.newaxis])
