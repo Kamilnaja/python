@@ -3,6 +3,7 @@ import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
+from tensorflow import keras
 
 # pobieranie danych
 fashion_mnist = tf.keras.datasets.fashion_mnist
@@ -22,18 +23,20 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dense(10)
 ])
 
+
 model.compile(optimizer="adam",
               loss=tf.keras.losses.SparseCategoricalCrossentropy(
                   from_logits=True),
               metrics=["accuracy"])
 
 log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-tensorboard_callback = tf.keras.callbacks.TensorBoard(
+
+tensorboard = keras.callbacks.TensorBoard(
     log_dir=log_dir, histogram_freq=1)
 
 
 model.fit(train_images, train_labels, epochs=10,
-          callbacks=[tensorboard_callback])
+          callbacks=[tensorboard])
 sum = model.summary()
 
 print(sum)
@@ -44,9 +47,6 @@ print("\nTest accuracy:", test_acc)
 
 probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
 predictions = probability_model.predict(test_images)
-
-print(predictions[0])
-print(np.argmax(predictions[0]))
 
 
 def plot_image(i, predictions_array, true_label, img):
