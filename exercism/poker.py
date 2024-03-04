@@ -55,7 +55,10 @@ def approx_average_is_average(hand):
     average = card_average(hand)
     median = hand[len(hand) // 2]
     first_and_last_average = (hand[0] + hand[-1]) / 2
-    return average in [first_and_last_average, average == median]
+    print(average)
+    print(first_and_last_average)
+    print(median)
+    return average in [first_and_last_average, median]
 
 
 def average_even_is_average_odd(hand):
@@ -65,8 +68,11 @@ def average_even_is_average_odd(hand):
     :return: bool - are even and odd averages equal?
     """
 
-    odds = filter(lambda x: x % 2 != 0, hand)
-    return card_average(list(odds)) == card_average(hand)
+    odds = hand[::2]
+    even = hand[1::2]
+    print(card_average(list(odds)))
+    print(card_average(list(even)))
+    return card_average(list(odds)) == card_average(list(even))
 
 
 def maybe_double_last(hand):
@@ -76,9 +82,9 @@ def maybe_double_last(hand):
     :return: list - hand with Jacks (if present) value doubled.
     """
 
-    pass
+    if hand[-1] == 11:
+        return hand[:-1] + [22]
+    return hand
 
 
-print(average_even_is_average_odd([1, 2, 3]))
-print(average_even_is_average_odd([1, 2, 3, 4]))
-print(average_even_is_average_odd([1, 2, 4, 5, 8]))
+print(maybe_double_last([5, 9, 11]))
